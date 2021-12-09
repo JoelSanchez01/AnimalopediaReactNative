@@ -3,27 +3,31 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import Layout from "../components/Layout";
 import InputTexto from "../components/InputTexto";
-import Boton from "../components/Boton";
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
   return (
     <Layout>
       <HeaderPrincipal>
+        <InputTexto placeholder={"Name"} contrasena={false} />
+        <InputTexto placeholder={"Email"} contrasena={false} />
         <InputTexto placeholder={"User"} contrasena={false} />
+        <InputTexto placeholder={"Password"} contrasena={true} />
         <InputTexto placeholder={"Password"} contrasena={true} />
         <View style={styles.botones}>
           <TouchableOpacity
             style={styles.botonAzul}
-            onPress={() => console.log("Login")}
+            onPress={() => console.log("Register")}
           >
-            <Text>Login</Text>
+            <Text>Register</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.botonRojo}
-            onPress={navigation.navigate("Register")}
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
           >
-            <Text>Atras</Text>
+            <Text>Login</Text>
           </TouchableOpacity>
         </View>
       </HeaderPrincipal>
@@ -54,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Register;
