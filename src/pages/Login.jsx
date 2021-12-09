@@ -13,8 +13,9 @@ const Login = () => {
             style={styles.imagenLogo}
             source={require("../assets/logo.png")}
           />
-          <Text>Ingresa tus datos</Text>
-          <InputTexto placeholder={"Usuario"} />
+          <Text style={styles.textRegular}>Ingresa tus datos</Text>
+          <InputTexto placeholder={"User"} contrasena={false} />
+          <InputTexto placeholder={"Password"} contrasena={true} />
         </View>
       </View>
     </Layout>
@@ -32,13 +33,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  textRegular: {
+    fontFamily: "NotoSans_400Regular",
+    fontSize: 20,
+    marginBottom: 10,
+  },
   imagenLogo: {
     width: 100,
     height: 100,
   },
   textTitle: {
-    fontSize: 30,
-
+    fontSize: 40,
     fontFamily: "NotoSans_700Bold",
   },
 });

@@ -1,12 +1,12 @@
 import React from "react";
-import { View, ImageBackground, StyleSheet } from "react-native";
+import { Dimensions, ImageBackground, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-const Layout = ({ navigation, children }) => {
+const Layout = ({ children }) => {
   return (
     <LinearGradient
       // Button Linear Gradient
-      colors={["#C6D57E", "#D1E8E4"]}
+      colors={["#D1E8E4", "#C6D57E"]}
       style={styles.gradiante}
     >
       <ImageBackground
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   background: {
-    width: "100%",
-    height: "100%",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
     resizeMode: "cover",
   },
 });

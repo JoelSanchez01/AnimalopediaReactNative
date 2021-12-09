@@ -2,19 +2,26 @@ import React from "react";
 import { TextInput, StyleSheet } from "react-native";
 
 const InputTexto = (props) => {
-  const { placeholder } = props;
+  const { placeholder, contrasena } = props;
   return (
-    <TextInput placeholder={placeholder} style={styles.input} label="Usuario" />
+    <TextInput
+      placeholder={placeholder}
+      style={styles.input}
+      label={placeholder}
+      secureTextEntry={contrasena}
+    />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    width: 100,
-    height: 20,
+    width: 250,
+    height: 40,
     borderColor: "gray",
     borderWidth: 1,
     borderRadius: 100,
+    marginBottom: 20,
+    padding: 10,
   },
 });
 
