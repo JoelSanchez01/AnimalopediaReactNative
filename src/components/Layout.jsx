@@ -2,7 +2,7 @@ import React from "react";
 import { View, ImageBackground, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-const Layout = ({ navigation, children }) => {
+const Layout = ({ children }) => {
   return (
     <LinearGradient
       // Button Linear Gradient
@@ -13,14 +13,7 @@ const Layout = ({ navigation, children }) => {
         source={require("../assets/Background.png")}
         style={styles.background}
       >
-        <View
-          style={styles.container}
-          onPress={() => {
-            navigation.navigate("Second");
-          }}
-        >
-          {children}
-        </View>
+        {children}
       </ImageBackground>
     </LinearGradient>
   );
@@ -35,11 +28,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "cover",
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
