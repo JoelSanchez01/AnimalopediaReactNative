@@ -1,50 +1,56 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import HeaderPrincipal from "../components/HeaderPrincipal";
 import Layout from "../components/Layout";
 import InputTexto from "../components/InputTexto";
+import Boton from "../components/Boton";
 
 const Login = () => {
   return (
     <Layout>
-      <View style={styles.containerLogin}>
-        <View style={styles.containerLogin__Header}>
-          <Text style={styles.textTitle}>Animalopedia</Text>
-          <Image
-            style={styles.imagenLogo}
-            source={require("../assets/logo.png")}
-          />
-          <Text style={styles.textRegular}>Ingresa tus datos</Text>
-          <InputTexto placeholder={"User"} contrasena={false} />
-          <InputTexto placeholder={"Password"} contrasena={true} />
+      <HeaderPrincipal>
+        <InputTexto placeholder={"User"} contrasena={false} />
+        <InputTexto placeholder={"Password"} contrasena={true} />
+        <View style={styles.botones}>
+          <TouchableOpacity
+            style={styles.botonAzul}
+            onPress={() => console.log("Login")}
+          >
+            <Text>Login</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.botonRojo}
+            onPress={() => console.log("Atras")}
+          >
+            <Text>Atras</Text>
+          </TouchableOpacity>
         </View>
-      </View>
+      </HeaderPrincipal>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  containerLogin: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  botones: {
+    flexDirection: "row-reverse",
+
+    justifyContent: "space-between",
   },
-  containerLogin__Header: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  botonAzul: {
+    margin: 5,
+    backgroundColor: "#38A3A5",
+    padding: 10,
+    paddingHorizontal: 30,
+    borderRadius: 100,
   },
-  textRegular: {
-    fontFamily: "NotoSans_400Regular",
-    fontSize: 20,
-    marginBottom: 10,
-  },
-  imagenLogo: {
-    width: 100,
-    height: 100,
-  },
-  textTitle: {
-    fontSize: 40,
-    fontFamily: "NotoSans_700Bold",
+  botonRojo: {
+    backgroundColor: "#BD1616",
+    margin: 5,
+    padding: 10,
+    paddingHorizontal: 30,
+    borderRadius: 100,
+    color: "white",
   },
 });
 
