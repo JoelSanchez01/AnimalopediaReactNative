@@ -1,37 +1,68 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  KeyboardAvoidingView,
+} from "react-native";
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import Layout from "../components/Layout";
 import InputTexto from "../components/InputTexto";
+import { auth } from "../../firebase.js";
 
 const Register = ({ navigation }) => {
-  return (
-    <Layout>
-      <HeaderPrincipal>
-        <InputTexto placeholder={"Name"} contrasena={false} />
-        <InputTexto placeholder={"Email"} contrasena={false} />
-        <InputTexto placeholder={"User"} contrasena={false} />
-        <InputTexto placeholder={"Password"} contrasena={true} />
-        <InputTexto placeholder={"Password"} contrasena={true} />
-        <View style={styles.botones}>
-          <TouchableOpacity
-            style={styles.botonAzul}
-            onPress={() => console.log("Register")}
-          >
-            <Text>Register</Text>
-          </TouchableOpacity>
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-          <TouchableOpacity
-            style={styles.botonRojo}
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
-          >
-            <Text>Login</Text>
-          </TouchableOpacity>
-        </View>
-      </HeaderPrincipal>
-    </Layout>
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch((error) => alert(error));
+  };
+
+  return (
+    <KeyboardAvoidingView>
+      <Layout>
+        <HeaderPrincipal>
+          <InputTexto
+            placeholder={"Name"}
+            contrasena={false}
+            value={name}
+            onChangeText={(text) => setName(text)}
+          />
+          <InputTexto
+            placeholder={"Email"}
+            contrasena={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <InputTexto
+            placeholder={"Password"}
+            contrasena={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <View style={styles.botones}>
+            <TouchableOpacity style={styles.botonAzul} onPress={handleSignUp}>
+              <Text>Register</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.botonRojo}
+              onPress={() => navigation.navigate("Login")}
+            >
+              <Text>Login</Text>
+            </TouchableOpacity>
+          </View>
+        </HeaderPrincipal>
+      </Layout>
+    </KeyboardAvoidingView>
   );
 };
 

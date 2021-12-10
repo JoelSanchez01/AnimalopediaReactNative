@@ -1,33 +1,75 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  KeyboardAvoidingView,
+} from "react-native";
+
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import Layout from "../components/Layout";
 import InputTexto from "../components/InputTexto";
-import Boton from "../components/Boton";
+import { StackActions } from "@react-navigation/native";
+import { auth } from "../../firebase.js";
 
 const Login = ({ navigation }) => {
-  return (
-    <Layout>
-      <HeaderPrincipal>
-        <InputTexto placeholder={"User"} contrasena={false} />
-        <InputTexto placeholder={"Password"} contrasena={true} />
-        <View style={styles.botones}>
-          <TouchableOpacity
-            style={styles.botonAzul}
-            onPress={() => console.log("Login")}
-          >
-            <Text>Login</Text>
-          </TouchableOpacity>
+  const popAction = StackActions.pop(1);
 
-          <TouchableOpacity
-            style={styles.botonRojo}
-            onPress={navigation.navigate("Register")}
-          >
-            <Text>Atras</Text>
-          </TouchableOpacity>
-        </View>
-      </HeaderPrincipal>
-    </Layout>
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log("Logged in With:", user.email);
+      })
+      .catch((error) => alert(error));
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate("Ingreso");
+      }
+    });
+    return unsubscribe;
+  }, []);
+
+  return (
+    <KeyboardAvoidingView>
+      <Layout>
+        <HeaderPrincipal>
+          <InputTexto
+            placeholder={"Email"}
+            contrasena={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <InputTexto
+            placeholder={"Password"}
+            contrasena={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <View style={styles.botones}>
+            <TouchableOpacity style={styles.botonAzul} onPress={handleLogin}>
+              <Text>Login</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.botonRojo}
+              onPress={() => navigation.dispatch(popAction)}
+            >
+              <Text>Atras</Text>
+            </TouchableOpacity>
+          </View>
+        </HeaderPrincipal>
+      </Layout>
+    </KeyboardAvoidingView>
   );
 };
 
