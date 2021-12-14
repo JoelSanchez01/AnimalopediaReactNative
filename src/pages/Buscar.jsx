@@ -1,8 +1,11 @@
 import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Elemento from "../components/Elemento";
 
 const Buscar = () => {
+  const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
     <LinearGradient
       // Button Linear Gradient
@@ -17,7 +20,11 @@ const Buscar = () => {
           secureTextEntry={false}
         />
 
-        <View style={styles.cuadricula}></View>
+        <View style={styles.cuadricula}>
+          {arreglo.map((cosa) => (
+            <Elemento />
+          ))}
+        </View>
       </View>
     </LinearGradient>
   );
@@ -42,6 +49,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginBottom: 20,
     padding: 10,
+  },
+  cuadricula: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
