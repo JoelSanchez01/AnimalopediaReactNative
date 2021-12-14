@@ -2,9 +2,12 @@ import React from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Elemento from "../components/Elemento";
+import ButtonBack from "../components/ButtonBack";
+import { StackActions } from "@react-navigation/native";
 
-const Buscar = () => {
+const Buscar = ({ navigation }) => {
   const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const popAction = StackActions.pop(1);
 
   return (
     <LinearGradient
@@ -24,6 +27,9 @@ const Buscar = () => {
           {arreglo.map((cosa) => (
             <Elemento />
           ))}
+        </View>
+        <View style={styles.botonFlotante}>
+          <ButtonBack funcion={() => navigation.dispatch(popAction)} />
         </View>
       </View>
     </LinearGradient>
@@ -56,6 +62,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  botonFlotante: {
+    position: "absolute",
+    bottom: 20,
+    left: 30,
   },
 });
 
