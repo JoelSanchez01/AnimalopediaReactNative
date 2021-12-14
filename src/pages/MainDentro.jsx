@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import Layout from "../components/Layout";
 
-const MainDentro = () => {
+const MainDentro = ({ navigation }) => {
   return (
     <Layout>
       <View style={styles.container}>
@@ -16,7 +16,10 @@ const MainDentro = () => {
         </TouchableOpacity>
 
         <View style={styles.contenedorBotones}>
-          <TouchableOpacity style={styles.BotonesMain}>
+          <TouchableOpacity
+            style={styles.BotonesMain}
+            onPress={() => navigation.navigate("Buscar")}
+          >
             <Image
               style={styles.imagenBotonMain}
               source={require("../assets/spidericon.png")}
@@ -24,7 +27,10 @@ const MainDentro = () => {
             <Text>Animales</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.BotonesMain}>
+          <TouchableOpacity
+            style={styles.BotonesMain}
+            onPress={() => navigation.navigate("Buscar")}
+          >
             <Image
               style={styles.imagenBotonMain}
               source={require("../assets/paisicon.png")}
