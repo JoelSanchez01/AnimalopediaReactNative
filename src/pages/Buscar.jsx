@@ -25,7 +25,7 @@ const Buscar = ({ navigation }) => {
 
         <View style={styles.cuadricula}>
           {arreglo.map((cosa) => (
-            <Elemento />
+            <Elemento key={cosa} />
           ))}
         </View>
         <View style={styles.botonFlotante}>

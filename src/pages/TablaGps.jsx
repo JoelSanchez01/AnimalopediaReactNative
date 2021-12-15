@@ -23,7 +23,7 @@ const TablaGps = ({ navigation }) => {
 
         <View style={styles.cuadricula}>
           {arreglo.map((cosa) => (
-            <Elemento />
+            <Elemento key={cosa} />
           ))}
         </View>
 
