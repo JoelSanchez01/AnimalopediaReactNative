@@ -6,6 +6,11 @@ import { CardStyleInterpolators } from "@react-navigation/stack";
 import Ingresado from "./src/pages/Ingresado";
 import Register from "./src/pages/Register";
 import Login from "./src/pages/Login";
+import MainDentro from "./src/pages/MainDentro";
+
+import Buscar from "./src/pages/Buscar";
+import BuscarGps from "./src/pages/BuscarGps";
+import TablaGps from "./src/pages/TablaGps";
 
 import {
   NotoSans_400Regular,
@@ -41,6 +46,10 @@ export default function App() {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Ingreso" component={Ingresado} />
+        <Stack.Screen name="MainDentro" component={MainDentro} />
+        <Stack.Screen name="Buscar" component={Buscar} />
+        <Stack.Screen name="BuscarGps" component={BuscarGps} />
+        <Stack.Screen name="TablaGps" component={TablaGps} />
       </Stack.Navigator>
     </NavigationContainer>
   );

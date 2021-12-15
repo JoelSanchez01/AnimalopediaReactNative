@@ -1,15 +1,10 @@
 import React from "react";
 import { Image, TouchableOpacity, StyleSheet } from "react-native";
-import arrow from "../assets/arrowback.svg";
 
-const ButtonBack = () => {
+const ButtonBack = (props) => {
+  const { funcion } = props;
   return (
-    <TouchableOpacity
-      onPress={() => {
-        console.log("Hola");
-      }}
-      style={styles.boton}
-    >
+    <TouchableOpacity onPress={funcion} style={styles.boton}>
       <Image
         style={styles.imagen}
         source={require("../assets/arrowback2.png")}
