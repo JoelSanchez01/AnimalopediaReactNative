@@ -6,12 +6,14 @@ import MainDentro from "../pages/MainDentro";
 import Second from "../pages/Second";
 import Main from "../pages/Main";
 import Buscar from "../pages/Buscar";
+import BuscarGps from "../pages/BuscarGps";
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="BuscarGps" component={BuscarGps} />
         <Stack.Screen name="MainDentro" component={MainDentro} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Buscar" component={Buscar} />
