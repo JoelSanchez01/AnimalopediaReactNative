@@ -2,8 +2,14 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import Layout from "../components/Layout";
+import { auth } from "../../firebase";
 
 const MainDentro = ({ navigation }) => {
+  const handleSignOut = () => {
+    auth.signOut().then(() => {
+      navigation.replace("Login");
+    });
+  };
   return (
     <Layout>
       <View style={styles.container}>
@@ -39,6 +45,13 @@ const MainDentro = ({ navigation }) => {
               source={require("../assets/paisicon.png")}
             />
             <Text>Lugar</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.BotonesMainSalir}
+            onPress={handleSignOut}
+          >
+            <Text>Salir de mi cuenta</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -81,6 +94,16 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     marginBottom: 10,
+  },
+  BotonesMainSalir: {
+    width: 175,
+    height: 70,
+    margin: 20,
+    backgroundColor: "#D1E8E4",
+    borderRadius: 25,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
