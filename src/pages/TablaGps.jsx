@@ -4,40 +4,34 @@ import Mapa from "../components/Mapa";
 import Layout from "../components/Layout";
 import ButtonBack from "../components/ButtonBack";
 import { StackActions } from "@react-navigation/native";
+import Elemento from "../components/Elemento";
+import { LinearGradient } from "expo-linear-gradient";
 
-const BuscarGps = ({ navigation }) => {
+const TablaGps = ({ navigation }) => {
+  const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   const popAction = StackActions.pop(1);
 
   return (
-    <Layout>
+    <LinearGradient
+      // Button Linear Gradient
+      colors={["#C6D57E", "#D1E8E4"]}
+      style={styles.gradiante}
+    >
       <View style={styles.container}>
         <Mapa />
 
-        <TouchableOpacity
-          style={styles.BotonesMain}
-          onPress={() => navigation.navigate("TablaGps")}
-        >
-          <Image
-            style={styles.imagenBotonMain}
-            source={require("../assets/venenosos.png")}
-          />
-          <Text>Venenosos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.BotonesMain}
-          onPress={() => navigation.navigate("TablaGps")}
-        >
-          <Image
-            style={styles.imagenBotonMain}
-            source={require("../assets/novenenosos.png")}
-          />
-          <Text>No Venenosos</Text>
-        </TouchableOpacity>
+        <View style={styles.cuadricula}>
+          {arreglo.map((cosa) => (
+            <Elemento />
+          ))}
+        </View>
+
         <View style={styles.botonFlotante}>
           <ButtonBack funcion={() => navigation.dispatch(popAction)} />
         </View>
       </View>
-    </Layout>
+    </LinearGradient>
   );
 };
 
@@ -61,9 +55,16 @@ const styles = StyleSheet.create({
   },
   botonFlotante: {
     position: "absolute",
-    bottom: 100,
+    bottom: 120,
     left: 30,
+  },
+  cuadricula: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
-export default BuscarGps;
+export default TablaGps;

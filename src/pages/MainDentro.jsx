@@ -7,7 +7,10 @@ const MainDentro = ({ navigation }) => {
   return (
     <Layout>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.boton}>
+        <TouchableOpacity
+          style={styles.boton}
+          onPress={() => navigation.navigate("BuscarGps")}
+        >
           <Text style={styles.botonText}>Buscar en la ubicacion</Text>
           <Image
             style={styles.imagenBoton}
